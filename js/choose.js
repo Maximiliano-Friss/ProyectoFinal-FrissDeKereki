@@ -59,8 +59,6 @@ class Pokemon{
         this.poderes = poderes;     //Esto sera el array de poderes.
         this.entrenador = entrenador;
         this.source = `../img/choose${this.nombre}.gif`;
-        this.front = `../img/front${this.nombre}.png`;
-        this.back = `../img/back${this.nombre}.png`;
     }
 }
 

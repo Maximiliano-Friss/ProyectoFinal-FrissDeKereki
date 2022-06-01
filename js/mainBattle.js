@@ -18,6 +18,15 @@ const containerInfoEnemigo = document.getElementById('battle-container-infoEnemi
 const infoUsuario = document.createElement('img');
 infoUsuario.src = '../img/battleInfoUsuario.png';
 infoUsuario.classList.add('animate__animated', 'animate__fadeInRight');
+
+const vidaContainerUsuario = document.createElement('div');
+vidaContainerUsuario.classList.add('vidaContainerUsuario');
+const vidaUsuarioFilling = document.createElement('div');
+vidaContainerUsuario.appendChild(vidaUsuarioFilling);
+vidaUsuarioFilling.classList.add('vidaUsuarioFilling');
+
+//const vidaEnemigoContainer = document.createElement('div');
+
 const infoEnemigo = document.createElement('img');
 infoEnemigo.src = '../img/battleInfoEnemigo.png';
 infoEnemigo.classList.add('animate__animated', 'animate__fadeInLeft');
@@ -42,7 +51,31 @@ btnContinue.style.cursor = 'pointer';
 const pokemonVivos = () => salud > 0 && pokemon2.salud > 0;
 const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 
+class barraVidaUsuario {
+    constructor (elemento, valorInicial) {
+        this.fillElemento = elemento.querySelector('.vidaUsuarioFilling');
 
+        this.setValor(valorInicial);   
+        }
+        setValor(nuevoValor) {
+            if (nuevoValor < 0) {
+                nuevoValor = 0;
+            } else if (nuevoValor > 100) {
+                nuevoValor = 100;
+            }
+
+            this.valor = nuevoValor;
+            this.actualizar();
+        }
+
+        actualizar() {
+            const porcentaje = this.valor + '%';
+            this.fillElemento.style.width = porcentaje;
+        }
+}
+
+
+const vidaUsuario = new barraVidaUsuario(vidaContainerUsuario, salud);
 
 start();
 
@@ -82,8 +115,10 @@ function showPokemon() {
                 battleContainer.appendChild(frontPokemon2);
             }
             showFront2();
+
             containerInfoUsuario.appendChild(infoUsuario);
             containerInfoUsuario.appendChild(nombrePokemon1);
+            containerInfoUsuario.appendChild(vidaContainerUsuario);
             containerInfoEnemigo.appendChild(infoEnemigo);
             containerInfoEnemigo.appendChild(nombrePokemon2);
             clearTextBox();
@@ -130,6 +165,7 @@ function enemigoAtaca() {
     btnContinue.onclick = () => {
         salud -= totalDamage2;
         salud = salud > 0 ? salud : 0;
+        vidaUsuario.setValor(salud)
         f1 *= poder2.efectoEnAtaqueEnemigo;
         pokemon2.defensa *= poder2.efectoEnDefensaPropia;
         poderes[poderAlAzar(pokemon1)].probabilidadExito *= poder2.efectoEnExitoEnemigo;

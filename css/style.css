@@ -278,6 +278,24 @@ form {
           left: 1.5rem;
           top: 0.3rem;
           letter-spacing: 0; }
+        #container #main-container3 .battle-container #battle-container-infoUsuario .vidaContainerUsuario {
+          background-color: #020202;
+          border-radius: 5rem;
+          height: 0.6rem;
+          width: 8rem;
+          position: absolute;
+          left: 3rem;
+          top: 1.9rem;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center; }
+          #container #main-container3 .battle-container #battle-container-infoUsuario .vidaContainerUsuario .vidaUsuarioFilling {
+            background-color: #34cf2e;
+            border-radius: 5rem;
+            height: 0.4rem;
+            width: 100%;
+            transition: width 0.5s;
+            margin: auto 0.1rem; }
       #container #main-container3 .battle-container #battle-pokeballs-usuario {
         grid-column: 10/13;
         grid-row: 7/10;
