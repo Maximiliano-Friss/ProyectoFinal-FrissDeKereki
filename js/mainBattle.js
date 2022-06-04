@@ -20,12 +20,15 @@ infoUsuario.src = '../img/battleInfoUsuario.png';
 infoUsuario.classList.add('animate__animated', 'animate__fadeInRight');
 
 const vidaContainerUsuario = document.createElement('div');
+const vidaContainerEnemigo = document.createElement('div');
 vidaContainerUsuario.classList.add('vidaContainerUsuario');
+vidaContainerEnemigo.classList.add('vidaContainerEnemigo');
 const vidaUsuarioFilling = document.createElement('div');
+const vidaEnemigoFilling = document.createElement('div');
 vidaContainerUsuario.appendChild(vidaUsuarioFilling);
+vidaContainerEnemigo.appendChild(vidaEnemigoFilling);
 vidaUsuarioFilling.classList.add('vidaUsuarioFilling');
-
-//const vidaEnemigoContainer = document.createElement('div');
+vidaEnemigoFilling.classList.add('vidaEnemigoFilling');
 
 const infoEnemigo = document.createElement('img');
 infoEnemigo.src = '../img/battleInfoEnemigo.png';
@@ -51,11 +54,11 @@ btnContinue.style.cursor = 'pointer';
 const pokemonVivos = () => salud > 0 && pokemon2.salud > 0;
 const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 
-class barraVidaUsuario {
-    constructor (elemento, valorInicial) {
-        this.fillElemento = elemento.querySelector('.vidaUsuarioFilling');
-        this.vidaUsuario = salud;
-        this.setValor(valorInicial);   
+class barraVida {
+    constructor (elemento, vidaRestante, vidaInicial, clase) {
+        this.fillElemento = elemento.querySelector(clase);
+        this.vidaUsuario = vidaInicial;
+        this.setValor(vidaRestante);   
         }
         setValor(nuevoValor) {
             if (nuevoValor < 0) {
@@ -67,16 +70,17 @@ class barraVidaUsuario {
             this.valor = nuevoValor;
             this.actualizar();
         }
-
         actualizar() {
-            const porcentaje = 100*(this.valor/salud) + '%';
+            const porcentaje = 100*(this.valor/this.vidaUsuario) + '%';
             this.fillElemento.style.width = porcentaje;
         }
 }
 
-
 vidaRestanteUsuario = salud;
-const vida1 = new barraVidaUsuario(vidaContainerUsuario, vidaRestanteUsuario); //Esto hace que si el primer ataque es 0 de daño, igual baje hasta el porcentaje igual a la salud. Cambiarlo cosa que si el totalDamage es 0, setValor no corre
+vidaRestanteEnemigo = pokemon2.salud;
+const vida1 = new barraVida(vidaContainerUsuario, vidaRestanteUsuario, salud, '.vidaUsuarioFilling');
+const vida2 = new barraVida(vidaContainerEnemigo, vidaRestanteEnemigo, pokemon2.salud, '.vidaEnemigoFilling');
+
 
 start();
 
@@ -122,6 +126,7 @@ function showPokemon() {
             containerInfoUsuario.appendChild(vidaContainerUsuario);
             containerInfoEnemigo.appendChild(infoEnemigo);
             containerInfoEnemigo.appendChild(nombrePokemon2);
+            containerInfoUsuario.appendChild(vidaContainerEnemigo);
             clearTextBox();
         }, 1000);
     }

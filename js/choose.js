@@ -32,7 +32,7 @@ constructor(identificador, damage, type, probabilidadExito, efectoEnAtaqueEnemig
     this.probabilidadExito = probabilidadExito;
     this.efectoEnAtaqueEnemigo = efectoEnAtaqueEnemigo;
     this.efectoEnDefensaPropia = efectoEnDefensaPropia;
-    this.efectoEnExitoEnemigo = efectoEnExitoEnemigo; //Probar agregar otro parametro que sea mensaje especial, y que lo tengan los que no hacen daño. Los que si hacen daño que sea null. Luego, ms0.innerHTML = pokemon1?.special? || `${pokemon2.nombre} enemigo usó ${poder2.identificador}!`
+    this.efectoEnExitoEnemigo = efectoEnExitoEnemigo;
     }
 }
 
@@ -53,10 +53,10 @@ class Pokemon{
     constructor(nombre, salud, defensa, tipo, probabilidadCritico, poderes, entrenador){
         this.nombre = nombre;
         this.salud = salud;
-        this.defensa = defensa;     //Esto sera un factor inicial 1 que multiplica el ataque de quien ataca. Si baja, baja el ataque del enemigo.
+        this.defensa = defensa;
         this.tipo = tipo;
         this.probabilidadCritico = probabilidadCritico;
-        this.poderes = poderes;     //Esto sera el array de poderes.
+        this.poderes = poderes;
         this.entrenador = entrenador;
         this.source = `../img/choose${this.nombre}.gif`;
     }

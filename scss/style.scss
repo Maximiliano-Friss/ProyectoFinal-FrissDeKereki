@@ -426,6 +426,27 @@ form{
                     top: 0.3rem;
                     letter-spacing: 0;
                 }
+
+                .vidaContainerEnemigo{
+                    background-color: #020202;
+                    border-radius: 5rem;
+                    height: 0.6rem;
+                    width: 8rem;
+                    position: absolute;
+                    left: 3rem;
+                    top: 1.9rem;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .vidaEnemigoFilling{
+                        background-color: #34cf2e;
+                        border-radius: 5rem;
+                        height: 0.4rem;
+                        transition: width 0.5s;
+                        margin: auto 0.1rem;
+                    }
+                }
             }
 
             #battle-pokeballs-enemigo{

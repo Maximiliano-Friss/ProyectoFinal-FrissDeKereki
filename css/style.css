@@ -324,6 +324,23 @@ form {
           left: 0.5rem;
           top: 0.3rem;
           letter-spacing: 0; }
+        #container #main-container3 .battle-container #battle-container-infoEnemigo .vidaContainerEnemigo {
+          background-color: #020202;
+          border-radius: 5rem;
+          height: 0.6rem;
+          width: 8rem;
+          position: absolute;
+          left: 3rem;
+          top: 1.9rem;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center; }
+          #container #main-container3 .battle-container #battle-container-infoEnemigo .vidaContainerEnemigo .vidaEnemigoFilling {
+            background-color: #34cf2e;
+            border-radius: 5rem;
+            height: 0.4rem;
+            transition: width 0.5s;
+            margin: auto 0.1rem; }
       #container #main-container3 .battle-container #battle-pokeballs-enemigo {
         grid-column: 1/4;
         grid-row: 2/8; }
