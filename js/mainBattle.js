@@ -54,7 +54,7 @@ const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 class barraVidaUsuario {
     constructor (elemento, valorInicial) {
         this.fillElemento = elemento.querySelector('.vidaUsuarioFilling');
-
+        this.vidaUsuario = salud;
         this.setValor(valorInicial);   
         }
         setValor(nuevoValor) {
@@ -69,13 +69,14 @@ class barraVidaUsuario {
         }
 
         actualizar() {
-            const porcentaje = this.valor + '%';
+            const porcentaje = 100*(this.valor/salud) + '%';
             this.fillElemento.style.width = porcentaje;
         }
 }
 
 
-const vidaUsuario = new barraVidaUsuario(vidaContainerUsuario, salud);
+vidaRestanteUsuario = salud;
+const vida1 = new barraVidaUsuario(vidaContainerUsuario, vidaRestanteUsuario); //Esto hace que si el primer ataque es 0 de daño, igual baje hasta el porcentaje igual a la salud. Cambiarlo cosa que si el totalDamage es 0, setValor no corre
 
 start();
 
@@ -163,9 +164,9 @@ function juegaEnemigo() {
 
 function enemigoAtaca() {
     btnContinue.onclick = () => {
-        salud -= totalDamage2;
-        salud = salud > 0 ? salud : 0;
-        vidaUsuario.setValor(salud)
+        vidaRestanteUsuario -= totalDamage2;
+        vidaRestanteUsuario = vidaRestanteUsuario > 0 ? vidaRestanteUsuario : 0;
+        vida1.setValor(vidaRestanteUsuario);
         f1 *= poder2.efectoEnAtaqueEnemigo;
         pokemon2.defensa *= poder2.efectoEnDefensaPropia;
         poderes[poderAlAzar(pokemon1)].probabilidadExito *= poder2.efectoEnExitoEnemigo;
