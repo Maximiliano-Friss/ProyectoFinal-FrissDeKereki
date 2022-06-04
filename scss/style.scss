@@ -263,7 +263,7 @@ form{
             border-radius: 0.3rem;
             grid-column: 1/-1;
             grid-row: 1/-2;
-            margin: auto;
+            margin: 4rem auto;
             display: grid;
             grid-template-columns: repeat(12,1fr);
             grid-template-rows: repeat(12,1fr);
@@ -273,7 +273,7 @@ form{
             
             p{
                 font-family: 'GameboyPokemon';
-                font-size: 1rem;
+                font-size: 0.9rem;
                 grid-column: 2/12;
                 grid-row: 10/12;
                 letter-spacing: 0.3rem;
@@ -433,14 +433,14 @@ form{
                     height: 0.6rem;
                     width: 8rem;
                     position: absolute;
-                    left: 3rem;
+                    left: 2rem;
                     top: 1.9rem;
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
 
                     .vidaEnemigoFilling{
-                        background-color: #34cf2e;
+                        background: #34cf2e;
                         border-radius: 5rem;
                         height: 0.4rem;
                         transition: width 0.5s;

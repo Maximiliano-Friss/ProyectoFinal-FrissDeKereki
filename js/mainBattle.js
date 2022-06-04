@@ -51,27 +51,31 @@ let f2 = 1;
 let totalDamage1 = 0;
 let totalDamage2 = 0;
 btnContinue.style.cursor = 'pointer';
-const pokemonVivos = () => salud > 0 && pokemon2.salud > 0;
+const pokemonVivos = () => vidaRestanteUsuario > 0 && vidaRestanteEnemigo > 0;
 const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 
 class barraVida {
     constructor (elemento, vidaRestante, vidaInicial, clase) {
         this.fillElemento = elemento.querySelector(clase);
-        this.vidaUsuario = vidaInicial;
+        this.vidaJugador = vidaInicial;
         this.setValor(vidaRestante);   
         }
         setValor(nuevoValor) {
-            if (nuevoValor < 0) {
+            if(nuevoValor < 0) {
                 nuevoValor = 0;
-            } else if (nuevoValor > 100) {
+            } else if(nuevoValor > 100) {
                 nuevoValor = 100;
+            } else if(nuevoValor <= 50 && nuevoValor > 25) {
+                this.fillElemento.style.background = 'yellow';
+            } else if(nuevoValor <= 25) {
+                this.fillElemento.style.background = 'red';
             }
 
             this.valor = nuevoValor;
             this.actualizar();
         }
         actualizar() {
-            const porcentaje = 100*(this.valor/this.vidaUsuario) + '%';
+            const porcentaje = 100*(this.valor/this.vidaJugador) + '%';
             this.fillElemento.style.width = porcentaje;
         }
 }
@@ -80,7 +84,6 @@ vidaRestanteUsuario = salud;
 vidaRestanteEnemigo = pokemon2.salud;
 const vida1 = new barraVida(vidaContainerUsuario, vidaRestanteUsuario, salud, '.vidaUsuarioFilling');
 const vida2 = new barraVida(vidaContainerEnemigo, vidaRestanteEnemigo, pokemon2.salud, '.vidaEnemigoFilling');
-
 
 start();
 
@@ -126,7 +129,7 @@ function showPokemon() {
             containerInfoUsuario.appendChild(vidaContainerUsuario);
             containerInfoEnemigo.appendChild(infoEnemigo);
             containerInfoEnemigo.appendChild(nombrePokemon2);
-            containerInfoUsuario.appendChild(vidaContainerEnemigo);
+            containerInfoEnemigo.appendChild(vidaContainerEnemigo);
             clearTextBox();
         }, 1000);
     }
@@ -183,8 +186,9 @@ function enemigoAtaca() {
 function usuarioAtaca() {
     btnContinue.onclick = () => {
         totalDamage1 = Math.round(f1*(poder1.damage/pokemon2.defensa));
-        pokemon2.salud -= totalDamage1;
-        pokemon2.salud = pokemon2.salud > 0 ? pokemon2.salud : 0;
+        vidaRestanteEnemigo -= totalDamage1;
+        vidaRestanteEnemigo = vidaRestanteEnemigo > 0 ? vidaRestanteEnemigo : 0;
+        vida2.setValor(vidaRestanteEnemigo);
         f2 *= poder1.efectoEnAtaqueEnemigo;
         pokemon1.defensa *= poder1.efectoEnDefensaPropia;
         pokemon2.poderes[poderAlAzar(pokemon2)].probabilidadExito *= poder1.efectoEnExitoEnemigo;
