@@ -185,7 +185,7 @@ form{
             grid-row: 4/-4;
 
             img {
-                width: 20rem;
+                width: 180vw;
                 overflow: hidden;
             }
         }
@@ -434,11 +434,17 @@ form{
                 position: relative;
 
                 .p-pokemon2{
-                    font-size: 0.7rem;
+                    font-size: 0.6rem;
                     position: absolute;
                     left: 0.5rem;
                     top: 0.3rem;
                     letter-spacing: 0;
+                }
+
+                .p-vida2{
+                    @extend .p-pokemon2;
+                    left: 7.1rem;
+                    top: 0.2rem;
                 }
 
                 .vidaContainerEnemigo{

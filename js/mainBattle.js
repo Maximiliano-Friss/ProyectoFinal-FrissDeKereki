@@ -88,7 +88,9 @@ const vida2 = new barraVida(vidaContainerEnemigo, vidaRestanteEnemigo, pokemon2.
 const vidaPokemon1 = document.createElement('p');
 vidaPokemon1.classList.add('p-vida1');
 vidaPokemon1.innerHTML = `${vidaRestanteUsuario}/${salud}`;
-
+const vidaPokemon2 = document.createElement('p');
+vidaPokemon2.classList.add('p-vida2');
+vidaPokemon2.innerHTML = `${vidaRestanteEnemigo}/${pokemon2.salud}`;
 
 
 start();
@@ -137,6 +139,7 @@ function showPokemon() {
             containerInfoEnemigo.appendChild(infoEnemigo);
             containerInfoEnemigo.appendChild(nombrePokemon2);
             containerInfoEnemigo.appendChild(vidaContainerEnemigo);
+            containerInfoEnemigo.appendChild(vidaPokemon2);
             clearTextBox();
         }, 1000);
     }
@@ -179,10 +182,11 @@ function juegaEnemigo() {
 
 function enemigoAtaca() {
     btnContinue.onclick = () => {
+        vidaUsuarioPreAtaque = vidaRestanteUsuario;
         vidaRestanteUsuario -= totalDamage2;
         vidaRestanteUsuario = vidaRestanteUsuario > 0 ? vidaRestanteUsuario : 0;
         vida1.setValor(vidaRestanteUsuario);
-        vidaPokemon1.innerHTML = `${vidaRestanteUsuario}/${salud}`;
+        reducirVida(vidaUsuarioPreAtaque, vidaRestanteUsuario, salud, vidaPokemon1);
         f1 *= poder2.efectoEnAtaqueEnemigo;
         pokemon2.defensa *= poder2.efectoEnDefensaPropia;
         poderes[poderAlAzar(pokemon1)].probabilidadExito *= poder2.efectoEnExitoEnemigo;
@@ -193,15 +197,26 @@ function enemigoAtaca() {
 
 function usuarioAtaca() {
     btnContinue.onclick = () => {
+        vidaEnemigoPreAtaque = vidaRestanteEnemigo;
         totalDamage1 = Math.round(f1*(poder1.damage/pokemon2.defensa));
         vidaRestanteEnemigo -= totalDamage1;
         vidaRestanteEnemigo = vidaRestanteEnemigo > 0 ? vidaRestanteEnemigo : 0;
         vida2.setValor(vidaRestanteEnemigo);
+        reducirVida(vidaEnemigoPreAtaque, vidaRestanteEnemigo, pokemon2.salud, vidaPokemon2);
         f2 *= poder1.efectoEnAtaqueEnemigo;
         pokemon1.defensa *= poder1.efectoEnDefensaPropia;
         pokemon2.poderes[poderAlAzar(pokemon2)].probabilidadExito *= poder1.efectoEnExitoEnemigo;
         msg0.innerHTML = `${pokemon2.nombre} enemigo recibe ${totalDamage1} de daño!`;
         checkStatus1();
+    }
+}
+
+function reducirVida(i, vidaActualizada, vidaInicial, elemento) {
+    if (i >= vidaActualizada) {
+        elemento.innerHTML = `${i}/${vidaInicial}`;
+        setTimeout(function() {
+            reducirVida(i - 1, vidaActualizada, vidaInicial, elemento);
+        }, 20);
     }
 }
 

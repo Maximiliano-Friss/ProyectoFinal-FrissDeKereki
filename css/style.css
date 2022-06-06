@@ -145,7 +145,7 @@ form {
       grid-column: 4/-4;
       grid-row: 4/-4; }
       #container #main-container2 #logoPokemon-container img, #container #main-container3 #logoPokemon-container img {
-        width: 20rem;
+        width: 180vw;
         overflow: hidden; }
     #container #main-container2 #welcome-container, #container #main-container3 #welcome-container {
       grid-column: 3/-3;
@@ -328,12 +328,15 @@ form {
         width: 228px;
         height: 66px;
         position: relative; }
-        #container #main-container3 .battle-container #battle-container-infoEnemigo .p-pokemon2 {
-          font-size: 0.7rem;
+        #container #main-container3 .battle-container #battle-container-infoEnemigo .p-pokemon2, #container #main-container3 .battle-container #battle-container-infoEnemigo .p-vida2 {
+          font-size: 0.6rem;
           position: absolute;
           left: 0.5rem;
           top: 0.3rem;
           letter-spacing: 0; }
+        #container #main-container3 .battle-container #battle-container-infoEnemigo .p-vida2 {
+          left: 7.1rem;
+          top: 0.2rem; }
         #container #main-container3 .battle-container #battle-container-infoEnemigo .vidaContainerEnemigo {
           background-color: #020202;
           border-radius: 5rem;
