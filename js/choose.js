@@ -1,11 +1,13 @@
 const mainContainer2 = document.getElementById('main-container2');
 const logoPokemonContainer = document.getElementById('logoPokemon-container')
 const theme = new Audio('../audio/RedTheme.mp3');
-theme.setAttribute('muted', 'true');
+theme.setAttribute('muted', 'muted');
+theme.setAttribute('autoplay', 'true');
+window.onload = () => theme.play();
 const welcomeContainer = document.getElementById('welcome-container');
 const welcomeContainerNombres = document.getElementById('welcome-container-nombres');
 const footerContainer = document.getElementById('footer-container');
-const audioOff = document.createElement('img');
+const audioOff = document.querySelector('.audioOff');
 const logoPokemonImg = document.createElement('img');
 const profOak = document.createElement('img');
 const msgWelcome = document.createElement('p');
@@ -21,6 +23,8 @@ const labContainerPokeballs = document.createElement('div');
 const labContainerPokemon = document.createElement('div');
 const labTitulo = document.createElement ('h2');
 const labSubtitulo = document.createElement('p');
+const labPokemonElegido = document.createElement('p');
+labPokemonElegido.classList.add('lab-p-pokemonElegido');
 
 //CLASE Poder
 
@@ -76,28 +80,18 @@ const OPONENTE_AL_AZAR = Math.floor(Math.random()*OPCIONES_POKEMON.length);
 localStorage.setItem('POKEMON_ENEMIGO', JSON.stringify(OPCIONES_POKEMON[OPONENTE_AL_AZAR]));
 
 //MUSICA
-footerContainer.appendChild(audioOff);
-audioOff.classList.add('audioOff');
 const currentSound = localStorage.getItem('SOUND');
-
-if(parseInt(currentSound) || currentSound === null) {
-    theme.play();
-    audioOff.setAttribute('src', '../img/audiooff.png');
-} else {
-    theme.pause();
-    audioOff.setAttribute('src', '../img/mute.png');
-}
 
 audioOff.onclick = () => {
     const currentSound = localStorage.getItem('SOUND');
     if (parseInt(currentSound) || currentSound === null) {
         localStorage.setItem('SOUND', 0);
         theme.pause()
-        audioOff.setAttribute('src', '../img/mute.png');
+        audioOff.setAttribute('src', '../img/audioOff.png');
     } else {
         localStorage.setItem('SOUND', 1);
         theme.play()
-        audioOff.setAttribute('src', '../img/audiooff.png');
+        audioOff.setAttribute('src', '../img/audioOn.png');
     }
 };
 audioOff.style.cursor = 'pointer';
@@ -119,7 +113,6 @@ setTimeout(function () {
         mainContainer2.appendChild(profOak);
         profOak.setAttribute('src', '../img/profOak.png');
         profOak.classList.add('profOak', 'animate__animated', 'animate__zoomIn');
-
         welcomeContainerNombres.appendChild(msgWelcome);
         msgWelcome.innerHTML = `Hola!<br>Soy el Profesor Oak.<br> Todo listo para comenzar?`;
         msgWelcome.classList.add('textos', 'animate__animated', 'animate__zoomIn');
@@ -128,7 +121,6 @@ setTimeout(function () {
         btnNext.classList.add('textos', 'btn-Next', 'animate__animated', 'animate__zoomIn');
     }, 10000);
 }, 4000);
-
 
 btnNext.addEventListener('click', () => {
     msgWelcome.classList.remove('animate__zoomIn');
@@ -227,10 +219,13 @@ function mostrarPokeballs() {
             imgPokemon.src = pok.source;
             imgPokemon.classList.add('animate__animated', 'animate__bounceIn');
             labContainerPokemon.appendChild(imgPokemon);
+            mainContainer2.appendChild(labPokemonElegido);
+            labPokemonElegido.innerHTML = `Haz click para escoger a ${pok.nombre}!`;
         }
 
         imgPokeball.onmouseleave = () => {
             imgPokeball.classList.remove('animate__animated', 'animate__bounce');
+            labPokemonElegido.innerHTML = '';
         }
 
         imgPokeball.onclick = () => {

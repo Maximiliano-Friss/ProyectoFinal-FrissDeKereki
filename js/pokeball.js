@@ -7,7 +7,6 @@ const pokeballNegro = document.getElementById('pokeball-negro');
 const pokeballBlanco = document.getElementById('pokeball-blanco');
 const btnPokeball = document.getElementById('btn-pokeball');
 
-
 btnPokeball.addEventListener('click', () => {
     pokeballSound.play();
     circleNegro.classList.add('animate__animated', 'animate__bounceOut');

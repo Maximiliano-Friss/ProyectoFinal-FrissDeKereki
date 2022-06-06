@@ -24,7 +24,7 @@ a {
 }
 
 .textos {
-    font-size: 1.1em;
+    font-size: 1.4vw;
     line-height: 1.6;
     text-align: center;
 }
@@ -161,6 +161,7 @@ form{
         display: grid;
         grid-template-columns: repeat(12,1fr);
         grid-template-rows: repeat(12,2.1rem);
+        position: relative;
 
         .lab-container-pokemon{
             grid-column: 6/8;
@@ -191,14 +192,14 @@ form{
 
         #welcome-container{
             grid-column: 3/-3;
-            grid-row: 2/-2;
+            grid-row: 2/-1;
             min-width: 34rem;
-            max-height: 21rem;
+            max-height: 25rem;
         }
         
         #welcome-container-nombres{
             grid-column: 7/10;
-            grid-row: 2/-3;
+            grid-row: 2/-1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -215,15 +216,16 @@ form{
         }
 
         .profOak{
-            grid-column: 4/6;
+            grid-column: 4/-1;
             grid-row: 3/11;
+            margin-top: 2rem;
             width: 9em;
         }
 
         .lab-container{
             background-color: rgba(255, 255, 255, 0.75);
             grid-column: 3/-3;
-            grid-row: 2/-2;
+            grid-row: 2/-1;
             border-radius: 5rem;
             display: flex;
             flex-direction: column-reverse;
@@ -248,6 +250,12 @@ form{
                     height: 3rem;
                 }
             }
+        }
+        .lab-p-pokemonElegido {
+            grid-column: 3/-3;
+            grid-row: -1/-1;
+            margin: 2rem auto;
+            font-size: 1.5rem;
         }
     }
     
