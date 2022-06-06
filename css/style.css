@@ -279,12 +279,15 @@ form {
         height: 83px;
         margin-left: 2rem;
         position: relative; }
-        #container #main-container3 .battle-container #battle-container-infoUsuario .p-pokemon1 {
+        #container #main-container3 .battle-container #battle-container-infoUsuario .p-pokemon1, #container #main-container3 .battle-container #battle-container-infoUsuario .p-vida1 {
           font-size: 0.7rem;
           position: absolute;
           left: 1.5rem;
           top: 0.3rem;
           letter-spacing: 0; }
+        #container #main-container3 .battle-container #battle-container-infoUsuario .p-vida1 {
+          left: 7.5rem;
+          top: 1.95rem; }
         #container #main-container3 .battle-container #battle-container-infoUsuario .vidaContainerUsuario {
           background-color: #020202;
           border-radius: 5rem;

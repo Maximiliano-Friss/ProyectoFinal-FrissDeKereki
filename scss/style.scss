@@ -375,6 +375,12 @@ form{
                     letter-spacing: 0;
                 }
 
+                .p-vida1{
+                    @extend .p-pokemon1;
+                    left: 7.5rem;
+                    top: 1.95rem;
+                }
+
                 .vidaContainerUsuario{
                     background-color: #020202;
                     border-radius: 5rem;

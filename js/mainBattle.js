@@ -85,6 +85,12 @@ vidaRestanteEnemigo = pokemon2.salud;
 const vida1 = new barraVida(vidaContainerUsuario, vidaRestanteUsuario, salud, '.vidaUsuarioFilling');
 const vida2 = new barraVida(vidaContainerEnemigo, vidaRestanteEnemigo, pokemon2.salud, '.vidaEnemigoFilling');
 
+const vidaPokemon1 = document.createElement('p');
+vidaPokemon1.classList.add('p-vida1');
+vidaPokemon1.innerHTML = `${vidaRestanteUsuario}/${salud}`;
+
+
+
 start();
 
 function start() {
@@ -127,6 +133,7 @@ function showPokemon() {
             containerInfoUsuario.appendChild(infoUsuario);
             containerInfoUsuario.appendChild(nombrePokemon1);
             containerInfoUsuario.appendChild(vidaContainerUsuario);
+            containerInfoUsuario.appendChild(vidaPokemon1);
             containerInfoEnemigo.appendChild(infoEnemigo);
             containerInfoEnemigo.appendChild(nombrePokemon2);
             containerInfoEnemigo.appendChild(vidaContainerEnemigo);
@@ -175,6 +182,7 @@ function enemigoAtaca() {
         vidaRestanteUsuario -= totalDamage2;
         vidaRestanteUsuario = vidaRestanteUsuario > 0 ? vidaRestanteUsuario : 0;
         vida1.setValor(vidaRestanteUsuario);
+        vidaPokemon1.innerHTML = `${vidaRestanteUsuario}/${salud}`;
         f1 *= poder2.efectoEnAtaqueEnemigo;
         pokemon2.defensa *= poder2.efectoEnDefensaPropia;
         poderes[poderAlAzar(pokemon1)].probabilidadExito *= poder2.efectoEnExitoEnemigo;
