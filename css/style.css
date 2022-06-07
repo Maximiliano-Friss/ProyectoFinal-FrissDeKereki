@@ -198,7 +198,7 @@ form {
       grid-column: 3/-3;
       grid-row: -1/-1;
       margin: 2rem auto;
-      font-size: 1.5rem; }
+      font-size: 1.3rem; }
   #container #main-container3 {
     grid-area: main;
     display: grid;
