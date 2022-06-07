@@ -3,7 +3,6 @@ const logoPokemonContainer = document.getElementById('logoPokemon-container')
 const theme = new Audio('../audio/RedTheme.mp3');
 theme.setAttribute('muted', 'muted');
 theme.setAttribute('autoplay', 'true');
-window.onload = () => theme.play();
 const welcomeContainer = document.getElementById('welcome-container');
 const welcomeContainerNombres = document.getElementById('welcome-container-nombres');
 const footerContainer = document.getElementById('footer-container');
@@ -79,22 +78,7 @@ const OPCIONES_POKEMON = [CHARMANDER2, SQUIRTLE2, BULBASAUR2];
 const OPONENTE_AL_AZAR = Math.floor(Math.random()*OPCIONES_POKEMON.length);
 localStorage.setItem('POKEMON_ENEMIGO', JSON.stringify(OPCIONES_POKEMON[OPONENTE_AL_AZAR]));
 
-//MUSICA
-const currentSound = localStorage.getItem('SOUND');
 
-audioOff.onclick = () => {
-    const currentSound = localStorage.getItem('SOUND');
-    if (parseInt(currentSound) || currentSound === null) {
-        localStorage.setItem('SOUND', 0);
-        theme.pause()
-        audioOff.setAttribute('src', '../img/audioOff.png');
-    } else {
-        localStorage.setItem('SOUND', 1);
-        theme.play()
-        audioOff.setAttribute('src', '../img/audioOn.png');
-    }
-};
-audioOff.style.cursor = 'pointer';
 
 setTimeout(function () {
     logoPokemonImg.setAttribute('src', '../img/pokemonLogo.gif');
@@ -243,3 +227,19 @@ function mostrarPokeballs() {
         }
     }
 }
+
+//MUSICA
+
+audioOff.onclick = () => {
+    const currentSound = localStorage.getItem('SOUND');
+    if (parseInt(currentSound) || currentSound === null) {
+        localStorage.setItem('SOUND', 0);
+        theme.pause()
+        audioOff.setAttribute('src', '../img/audioOff.png');
+    } else {
+        localStorage.setItem('SOUND', 1);
+        theme.play()
+        audioOff.setAttribute('src', '../img/audioOn.png');
+    }
+};
+audioOff.style.cursor = 'pointer';

@@ -18,7 +18,10 @@ const containerInfoEnemigo = document.getElementById('battle-container-infoEnemi
 const infoUsuario = document.createElement('img');
 infoUsuario.src = '../img/battleInfoUsuario.png';
 infoUsuario.classList.add('animate__animated', 'animate__fadeInRight');
-
+const battleTheme = new Audio('../audio/BattleMusic.mp3');
+battleTheme.setAttribute('muted', 'muted');
+battleTheme.setAttribute('autoplay', 'true');
+const audioOff = document.querySelector('.audioOff');
 const vidaContainerUsuario = document.createElement('div');
 const vidaContainerEnemigo = document.createElement('div');
 vidaContainerUsuario.classList.add('vidaContainerUsuario');
@@ -29,7 +32,6 @@ vidaContainerUsuario.appendChild(vidaUsuarioFilling);
 vidaContainerEnemigo.appendChild(vidaEnemigoFilling);
 vidaUsuarioFilling.classList.add('vidaUsuarioFilling');
 vidaEnemigoFilling.classList.add('vidaEnemigoFilling');
-
 const infoEnemigo = document.createElement('img');
 infoEnemigo.src = '../img/battleInfoEnemigo.png';
 infoEnemigo.classList.add('animate__animated', 'animate__fadeInLeft');
@@ -46,12 +48,12 @@ const btnContinue = document.querySelector('.btn-Continue');
 const msg0 = document.getElementById('msg-0');
 let poder1 = '';
 let poder2 = '';
-let f1 = 1;
+let f1 = 1; //f1 y f2 son factores que afectan el ataque enemigo
 let f2 = 1;
+let t0 = 1; //t1 factor afectado por los tipos de ataques y pokemon
 let totalDamage1 = 0;
 let totalDamage2 = 0;
 btnContinue.style.cursor = 'pointer';
-const pokemonVivos = () => vidaRestanteUsuario > 0 && vidaRestanteEnemigo > 0;
 const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 
 class barraVida {
@@ -107,31 +109,30 @@ function showPokemon() {
         imgEnemigo.classList.add('animate__animated', 'animate__zoomOutLeft');
         pokeballsUsuario.classList.add('animate__animated', 'animate__fadeOutRight');
         pokeballsEnemigo.classList.add('animate__animated', 'animate__fadeOutLeft');
+        
+        async function showBack1() {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre.toLowerCase()}`);
+            const data = await response.json();
+            const {back_default} = data.sprites;
+            backPokemon1.src = back_default;
+            battleContainer.appendChild(backPokemon1);
+        }
+        showBack1();
+
+        async function showFront2() {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon2.nombre.toLowerCase()}`);
+            const data = await response.json();
+            const {front_default} = data.sprites;
+            frontPokemon2.src = front_default;
+            battleContainer.appendChild(frontPokemon2);
+        }
+        showFront2();
 
         setTimeout(() => {
             imgUsuario.remove();
             imgEnemigo.remove();
             pokeballsUsuario.remove();
             pokeballsEnemigo.remove();
-
-            async function showBack1() {
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre.toLowerCase()}`);
-                const data = await response.json();
-                const {back_default} = data.sprites;
-                backPokemon1.src = back_default;
-                battleContainer.appendChild(backPokemon1);
-            }
-            showBack1();
-
-            async function showFront2() {
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon2.nombre.toLowerCase()}`);
-                const data = await response.json();
-                const {front_default} = data.sprites;
-                frontPokemon2.src = front_default;
-                battleContainer.appendChild(frontPokemon2);
-            }
-            showFront2();
-
             containerInfoUsuario.appendChild(infoUsuario);
             containerInfoUsuario.appendChild(nombrePokemon1);
             containerInfoUsuario.appendChild(vidaContainerUsuario);
@@ -167,11 +168,51 @@ function clearPowers(){
     btnPower3.remove();
 }
 
+function efectoPorTipo(tipoDePoder, tipoDePokemonAtacado) {
+    if(tipoDePoder == tipoDePokemonAtacado) {
+        t0 = 1;
+    } else {
+        switch(tipoDePoder) {
+            case 'FUEGO':
+                switch(tipoDePokemonAtacado) {
+                    case 'AGUA':
+                        t0 = 0.5;
+                        break;
+                    case 'PLANTA':
+                        t0 = 1.5;
+                        break;
+                };
+                break;
+            case 'AGUA':
+                switch(tipoDePokemonAtacado) {
+                    case 'PLANTA':
+                        t0 = 0.5;
+                        break;
+                    case 'FUEGO':
+                        t0 = 1.5;
+                        break;
+                };
+                break;
+            case 'PLANTA':
+                switch(tipoDePokemonAtacado) {
+                    case 'FUEGO':
+                        t0 = 0.5;
+                        break;
+                    case 'AGUA':
+                        t0 = 1.5;
+                        break;
+                };
+                break;
+        }
+    }
+}
+
 function juegaEnemigo() {
     poder2 = pokemon2.poderes[poderAlAzar(pokemon2)];
     btnContinue.onclick = () => {
         msg0.innerHTML = `${pokemon2.nombre} enemigo usó ${poder2.identificador}!`;
-        totalDamage2 = Math.round(f2*(poder2.damage/pokemon1.defensa));
+        efectoPorTipo(poder2.type, pokemon1.tipo);
+        totalDamage2 = Math.round(f2*t0*(poder2.damage/pokemon1.defensa));
         if(lograAtacar(poder2, pokemon2, ENEMIGO)){
             enemigoAtaca();
         } else {
@@ -198,7 +239,8 @@ function enemigoAtaca() {
 function usuarioAtaca() {
     btnContinue.onclick = () => {
         vidaEnemigoPreAtaque = vidaRestanteEnemigo;
-        totalDamage1 = Math.round(f1*(poder1.damage/pokemon2.defensa));
+        efectoPorTipo(poder1.type, pokemon2.tipo);
+        totalDamage1 = Math.round(f1*t0*(poder1.damage/pokemon2.defensa));
         vidaRestanteEnemigo -= totalDamage1;
         vidaRestanteEnemigo = vidaRestanteEnemigo > 0 ? vidaRestanteEnemigo : 0;
         vida2.setValor(vidaRestanteEnemigo);
@@ -221,7 +263,7 @@ function reducirVida(i, vidaActualizada, vidaInicial, elemento) {
 }
 
 function checkStatus1() {
-    if(pokemonVivos()){
+    if(vidaRestanteEnemigo > 0){
         juegaEnemigo();
     } else {
         batallaFinalizada();
@@ -229,18 +271,10 @@ function checkStatus1() {
 }
 
 function checkStatus2() {
-    if(pokemonVivos()){
+    if(vidaRestanteUsuario > 0){
         clearTextBox();
     } else {
         batallaFinalizada();
-    }
-}
-
-
-function batallaFinalizada(){
-    btnContinue.onclick = () => {
-        msg0.innerHTML = `La batalla ha finalizado! ${salud > pokemon2.salud ? `${USUARIO} ha ganado!` : `${ENEMIGO} ha ganado!`}`;
-        reiniciar();
     }
 }
 
@@ -286,6 +320,13 @@ function lograAtacar(poder, poke, jugador){
     }
 }
 
+function batallaFinalizada(){
+    btnContinue.onclick = () => {
+        msg0.innerHTML = `La batalla ha finalizado! ${vidaRestanteUsuario > vidaRestanteEnemigo ? `${USUARIO} ha ganado!` : `${ENEMIGO} ha ganado!`}`;
+        reiniciar();
+    }
+}
+
 function reiniciar() {
     btnContinue.onclick = () => {
         swal({
@@ -302,3 +343,18 @@ function reiniciar() {
         });
     }
 }
+
+//MUSICA
+audioOff.onclick = () => {
+    const currentSound = localStorage.getItem('SOUND2');
+    if (parseInt(currentSound) || currentSound === null) {
+        localStorage.setItem('SOUND2', 0);
+        battleTheme.pause()
+        audioOff.setAttribute('src', '../img/audioOff.png');
+    } else {
+        localStorage.setItem('SOUND2', 1);
+        battleTheme.play()
+        audioOff.setAttribute('src', '../img/audioOn.png');
+    }
+};
+audioOff.style.cursor = 'pointer';
