@@ -164,6 +164,7 @@ form{
         grid-template-columns: repeat(12,1fr);
         grid-template-rows: repeat(12,2.1rem);
         position: relative;
+        min-height: 32rem;
 
         .lab-container-pokemon{
             grid-column: 6/8;
@@ -253,7 +254,7 @@ form{
                 }
             }
         }
-        
+
         .lab-p-pokemonElegido {
             grid-column: 3/-3;
             grid-row: -1/-1;

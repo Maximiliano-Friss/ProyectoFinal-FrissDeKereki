@@ -127,7 +127,8 @@ form {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 2.1rem);
-    position: relative; }
+    position: relative;
+    min-height: 32rem; }
     #container #main-container2 .lab-container-pokemon, #container #main-container3 .lab-container-pokemon {
       grid-column: 6/8;
       grid-row: 4/9;
