@@ -56,6 +56,7 @@ let totalDamage2 = 0;
 btnContinue.style.cursor = 'pointer';
 const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 
+//CLASE BARRA DE SALUD
 class barraVida {
     constructor (elemento, vidaRestante, vidaInicial, clase) {
         this.fillElemento = elemento.querySelector(clase);
@@ -81,6 +82,7 @@ class barraVida {
             this.fillElemento.style.width = porcentaje;
         }
 }
+//
 
 vidaRestanteUsuario = salud;
 vidaRestanteEnemigo = pokemon2.salud;
@@ -99,6 +101,7 @@ nombrePokemon2.classList.add('animate__animated', 'animate__fadeInLeft');
 vidaContainerEnemigo.classList.add('animate__animated', 'animate__fadeInLeft');
 vidaPokemon2.classList.add('animate__animated', 'animate__fadeInLeft');
 
+//INICIO DE JUEGO
 start();
 
 function start() {
@@ -356,6 +359,7 @@ function reiniciar(){
         });
     }
 }
+//
 
 //MUSICA
 audioOff.onclick = () => {

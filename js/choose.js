@@ -26,7 +26,6 @@ const labPokemonElegido = document.createElement('p');
 labPokemonElegido.classList.add('lab-p-pokemonElegido');
 
 //CLASE Poder
-
 class Poder{
 constructor(identificador, damage, type, probabilidadExito, efectoEnAtaqueEnemigo, efectoEnDefensaPropia, efectoEnExitoEnemigo, descripcion) {
     this.identificador = identificador;
@@ -66,6 +65,7 @@ class Pokemon{
     }
 }
 
+//POKEMON
 const CHARMANDER = new Pokemon('CHARMANDER', 88, 1, 'FUEGO', 0.15, [ASCUAS, GRUNIDO, LANZALLAMAS, CUCHILLADA], localStorage.getItem('USUARIO'));
 const CHARMANDER2 = new Pokemon('CHARMANDER', 88, 1, 'FUEGO', 0.15, [ASCUAS, GRUNIDO, LANZALLAMAS, CUCHILLADA], localStorage.getItem('ENEMIGO'));
 const SQUIRTLE = new Pokemon ('SQUIRTLE', 90, 1, 'AGUA', 0.15, [PLACAJE, BURBUJA, REFUGIO, HIDROPULSO], localStorage.getItem('USUARIO'));
@@ -78,7 +78,7 @@ const OPCIONES_POKEMON = [CHARMANDER2, SQUIRTLE2, BULBASAUR2];
 //SELECCION POKEMON ENEMIGO
 const OPONENTE_AL_AZAR = Math.floor(Math.random()*OPCIONES_POKEMON.length);
 localStorage.setItem('POKEMON_ENEMIGO', JSON.stringify(OPCIONES_POKEMON[OPONENTE_AL_AZAR]));
-
+//
 
 
 setTimeout(function () {
@@ -230,7 +230,6 @@ function mostrarPokeballs() {
 }
 
 //MUSICA
-
 audioOff.onclick = () => {
     const currentSound = localStorage.getItem('SOUND');
     if (parseInt(currentSound) || currentSound === null) {

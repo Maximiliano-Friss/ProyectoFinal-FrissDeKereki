@@ -35,6 +35,7 @@ form{
     justify-content: space-around;
     align-items: center;
 }
+
 .btn-Next {
     color: white;
     background-color: #C70D00;
@@ -49,6 +50,7 @@ form{
         background-color: #ff2b1c;
     }
 }
+
 #container {
     background-color: gray;
     display: grid;
@@ -251,6 +253,7 @@ form{
                 }
             }
         }
+        
         .lab-p-pokemonElegido {
             grid-column: 3/-3;
             grid-row: -1/-1;
