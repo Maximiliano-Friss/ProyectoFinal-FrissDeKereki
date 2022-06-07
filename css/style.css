@@ -224,11 +224,19 @@ form {
         margin-top: 0.6rem;
         z-index: 4; }
       #container #main-container3 .battle-container .p-infoPoder {
-        grid-column: 10/12;
+        grid-column: 9/13;
         grid-row: 10/13;
-        font-size: 1rem;
-        margin-left: -0.6rem;
-        text-align: center; }
+        font-size: 0.7rem;
+        margin-left: 0.8rem;
+        letter-spacing: 0;
+        text-align: left; }
+      #container #main-container3 .battle-container .p-infoPoder2 {
+        grid-column: 9/13;
+        grid-row: 11/13;
+        font-size: 0.5rem;
+        margin-left: 0.3rem;
+        letter-spacing: 0;
+        text-align: left; }
       #container #main-container3 .battle-container .btn-Continue {
         grid-column: 11/12;
         grid-row: 11/12;
@@ -245,13 +253,13 @@ form {
         grid-column: 1/5;
         grid-row: 10/11;
         margin-left: 1.3rem;
+        margin-top: 1.2rem;
         text-align: left;
         z-index: 5; }
       #container #main-container3 .battle-container .btn-power-1 {
         grid-column: 5/9; }
       #container #main-container3 .battle-container .btn-power-2, #container #main-container3 .battle-container .btn-power-3 {
-        grid-row: 11/12;
-        margin-top: 0.8rem; }
+        grid-row: 11/12; }
       #container #main-container3 .battle-container .btn-power-3 {
         grid-column: 5/9; }
       #container #main-container3 .battle-container .battle-texto {
@@ -259,7 +267,7 @@ form {
         grid-row: 10/-2;
         width: 100%;
         margin-bottom: 0;
-        margin-top: -1.3rem;
+        margin-top: -0.8rem;
         z-index: 3; }
       #container #main-container3 .battle-container #battle-ovalo-usuario, #container #main-container3 .battle-container #battle-ovalo-enemigo {
         grid-column: 2/7;

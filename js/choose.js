@@ -28,7 +28,7 @@ labPokemonElegido.classList.add('lab-p-pokemonElegido');
 //CLASE Poder
 
 class Poder{
-constructor(identificador, damage, type, probabilidadExito, efectoEnAtaqueEnemigo, efectoEnDefensaPropia, efectoEnExitoEnemigo) {
+constructor(identificador, damage, type, probabilidadExito, efectoEnAtaqueEnemigo, efectoEnDefensaPropia, efectoEnExitoEnemigo, descripcion) {
     this.identificador = identificador;
     this.damage = damage;
     this.type = type;
@@ -36,20 +36,21 @@ constructor(identificador, damage, type, probabilidadExito, efectoEnAtaqueEnemig
     this.efectoEnAtaqueEnemigo = efectoEnAtaqueEnemigo;
     this.efectoEnDefensaPropia = efectoEnDefensaPropia;
     this.efectoEnExitoEnemigo = efectoEnExitoEnemigo;
+    this.descripcion = descripcion;
     }
 }
 
 //PODERES
-const ASCUAS = new Poder('ASCUAS', 20, 'FUEGO', 0.95, 1, 1, 1);
-const GRUNIDO = new Poder('GRUÑIDO', 0, 'NORMAL', 0.90, 0.95, 1, 1); //Baja ataque del enemigo. Se resta del ataque.
-const LANZALLAMAS = new Poder('LANZALLAMAS', 31, 'FUEGO', 0.75, 1, 1, 1);
-const CUCHILLADA = new Poder('CUCHILLADA', 15, 'NORMAL', 1, 1, 1, 1);
-const PLACAJE = new Poder('PLACAJE', 18, 'NORMAL', 0.95, 1, 1, 1);
-const BURBUJA = new Poder('BURBUJA', 22, 'AGUA', 0.92, 1, 1, 1);
-const REFUGIO = new Poder('REFUGIO', 0, 'NORMAL', 0.9, 1, 1.1, 1);   //Aumenta la defensa propia.
-const HIDROPULSO = new Poder('HIDROPULSO', 32, 'AGUA', 0.85, 1, 1, 0.95) //Baja prob Exito enemigo.
-const LATIGO_CEPA = new Poder('LÁTIGO CEPA', 19, 'PLANTA', 0.94, 1, 1, 1);
-const HOJA_AFILADA = new Poder('HOJA AFILADA', 15, 'PLANTA', 1, 1, 1, 1);
+const ASCUAS = new Poder('ASCUAS', 20, 'FUEGO', 0.95, 1, 1, 1, '');
+const GRUNIDO = new Poder('GRUÑIDO', 0, 'NORMAL', 0.90, 0.95, 1, 1, 'Disminuye daño enemigo.');
+const LANZALLAMAS = new Poder('LANZALLAMAS', 31, 'FUEGO', 0.75, 1, 1, 1, '');
+const CUCHILLADA = new Poder('CUCHILLADA', 15, 'NORMAL', 1, 1, 1, 1, '');
+const PLACAJE = new Poder('PLACAJE', 18, 'NORMAL', 0.95, 1, 1, 1, '');
+const BURBUJA = new Poder('BURBUJA', 22, 'AGUA', 0.92, 1, 1, 1, '');
+const REFUGIO = new Poder('REFUGIO', 0, 'NORMAL', 0.9, 1, 1.1, 1, 'Incrementa la defensa.');
+const HIDROPULSO = new Poder('HIDROPULSO', 32, 'AGUA', 0.85, 1, 1, 0.95, 'Disminuye la probabilidad de éxito del enemigo.');
+const LATIGO_CEPA = new Poder('LÁTIGO CEPA', 19, 'PLANTA', 0.94, 1, 1, 1, '');
+const HOJA_AFILADA = new Poder('HOJA AFILADA', 15, 'PLANTA', 1, 1, 1, 1, '');
 
 //CLASE Pokemon
 class Pokemon{

@@ -288,7 +288,8 @@ function juegaUsuario() {
         btnPower.onmouseover = () => {
             battleContainer.appendChild(infoPoder);
             infoPoder.classList.add('p-infoPoder');
-            infoPoder.innerHTML = `TIPO: ${poder.type}`;
+            infoPoder.innerHTML = `TIPO: ${poder.type}
+            <p class='p-infoPoder2'>${poder.descripcion}<p>`;
         }
 
         btnPower.onmouseleave = () => {
