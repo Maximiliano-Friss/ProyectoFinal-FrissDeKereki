@@ -86,14 +86,19 @@ vidaRestanteUsuario = salud;
 vidaRestanteEnemigo = pokemon2.salud;
 const vida1 = new barraVida(vidaContainerUsuario, vidaRestanteUsuario, salud, '.vidaUsuarioFilling');
 const vida2 = new barraVida(vidaContainerEnemigo, vidaRestanteEnemigo, pokemon2.salud, '.vidaEnemigoFilling');
-
 const vidaPokemon1 = document.createElement('p');
 vidaPokemon1.classList.add('p-vida1');
 vidaPokemon1.innerHTML = `${vidaRestanteUsuario}/${salud}`;
 const vidaPokemon2 = document.createElement('p');
 vidaPokemon2.classList.add('p-vida2');
 vidaPokemon2.innerHTML = `${vidaRestanteEnemigo}/${pokemon2.salud}`;
+nombrePokemon1.classList.add('animate__animated', 'animate__fadeInRight');
+vidaContainerUsuario.classList.add('animate__animated', 'animate__fadeInRight');
+vidaPokemon1.classList.add('animate__animated', 'animate__fadeInRight');
 
+nombrePokemon2.classList.add('animate__animated', 'animate__fadeInLeft');
+vidaContainerEnemigo.classList.add('animate__animated', 'animate__fadeInLeft');
+vidaPokemon2.classList.add('animate__animated', 'animate__fadeInLeft');
 
 start();
 
@@ -107,8 +112,8 @@ function showPokemon() {
     msg0.innerHTML = `${nombre} yo te elijo!`;
         imgUsuario.classList.add('animate__animated', 'animate__fadeOutLeft');
         imgEnemigo.classList.add('animate__animated', 'animate__zoomOutLeft');
-        pokeballsUsuario.classList.add('animate__animated', 'animate__fadeOutRight');
-        pokeballsEnemigo.classList.add('animate__animated', 'animate__fadeOutLeft');
+        pokeballsUsuario.classList.add('animate__animated', 'animate__zoomOutDown');
+        pokeballsEnemigo.classList.add('animate__animated', 'animate__zoomOutDown');
         
         async function showBack1() {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre.toLowerCase()}`);
@@ -323,12 +328,20 @@ function lograAtacar(poder, poke, jugador){
 
 function batallaFinalizada(){
     btnContinue.onclick = () => {
-        msg0.innerHTML = `La batalla ha finalizado! ${vidaRestanteUsuario > vidaRestanteEnemigo ? `${USUARIO} ha ganado!` : `${ENEMIGO} ha ganado!`}`;
+        if(vidaRestanteUsuario > vidaRestanteEnemigo){
+            msg0.innerHTML = `La batalla ha finalizado! ${USUARIO} ha ganado!`;
+            frontPokemon2.classList.remove('animate__fadeInUp');
+            frontPokemon2.classList.add('animate__fadeOutDown');
+        }else{
+            msg0.innerHTML = `La batalla ha finalizado! ${ENEMIGO} ha ganado!`;
+            backPokemon1.classList.remove('animate__fadeInUp');
+            backPokemon1.classList.add('animate__fadeOutDown');
+        }
         reiniciar();
     }
 }
 
-function reiniciar() {
+function reiniciar(){
     btnContinue.onclick = () => {
         swal({
             text: "Qué deseas hacer ahora?",
@@ -336,11 +349,11 @@ function reiniciar() {
             buttons: ["Terminar", "Volver a empezar"],
         })
         .then((volverAEmpezar) => {
-        if (volverAEmpezar) {
-            location.href = "../index.html";
-        } else {
-            swal("Gracias por jugar Batalla Pokémon.");
-        }
+            if (volverAEmpezar) {
+                location.href = "../index.html";
+            } else {
+                swal("Gracias por jugar Batalla Pokémon.");
+            }
         });
     }
 }

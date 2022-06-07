@@ -221,6 +221,7 @@ form {
         grid-column: 2/12;
         grid-row: 10/12;
         letter-spacing: 0.3rem;
+        margin-left: 0.6rem;
         margin-top: 0.6rem;
         z-index: 4; }
       #container #main-container3 .battle-container .p-infoPoder {
@@ -256,6 +257,9 @@ form {
         margin-top: 1.2rem;
         text-align: left;
         z-index: 5; }
+        #container #main-container3 .battle-container .btn-power-0:hover::after, #container #main-container3 .battle-container .btn-power-1:hover::after, #container #main-container3 .battle-container .btn-power-2:hover::after, #container #main-container3 .battle-container .btn-power-3:hover::after {
+          content: url("../img/flechaIzq.png");
+          margin-left: 0.2rem; }
       #container #main-container3 .battle-container .btn-power-1 {
         grid-column: 5/9; }
       #container #main-container3 .battle-container .btn-power-2, #container #main-container3 .battle-container .btn-power-3 {
@@ -290,11 +294,11 @@ form {
         #container #main-container3 .battle-container #battle-container-infoUsuario .p-pokemon1, #container #main-container3 .battle-container #battle-container-infoUsuario .p-vida1 {
           font-size: 0.7rem;
           position: absolute;
-          left: 1.5rem;
+          left: 1rem;
           top: 0.3rem;
           letter-spacing: 0; }
         #container #main-container3 .battle-container #battle-container-infoUsuario .p-vida1 {
-          left: 7.5rem;
+          left: 6.5rem;
           top: 1.95rem; }
         #container #main-container3 .battle-container #battle-container-infoUsuario .vidaContainerUsuario {
           background-color: #020202;
@@ -339,11 +343,10 @@ form {
         #container #main-container3 .battle-container #battle-container-infoEnemigo .p-pokemon2, #container #main-container3 .battle-container #battle-container-infoEnemigo .p-vida2 {
           font-size: 0.6rem;
           position: absolute;
-          left: 0.5rem;
           top: 0.3rem;
           letter-spacing: 0; }
         #container #main-container3 .battle-container #battle-container-infoEnemigo .p-vida2 {
-          left: 7.1rem;
+          left: 6.5rem;
           top: 0.2rem; }
         #container #main-container3 .battle-container #battle-container-infoEnemigo .vidaContainerEnemigo {
           background-color: #020202;
