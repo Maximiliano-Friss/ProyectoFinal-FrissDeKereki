@@ -334,15 +334,23 @@ function batallaFinalizada(){
             msg0.innerHTML = `La batalla ha finalizado! ${USUARIO} ha ganado!`;
             frontPokemon2.classList.remove('animate__fadeInUp');
             frontPokemon2.classList.add('animate__fadeOutDown');
+            setTimeout(() => {
+                frontPokemon2.remove();
+            }, 200);
         }else{
             msg0.innerHTML = `La batalla ha finalizado! ${ENEMIGO} ha ganado!`;
             backPokemon1.classList.remove('animate__fadeInUp');
             backPokemon1.classList.add('animate__fadeOutDown');
+            setTimeout(() => {
+                backPokemon1.remove();
+            }, 200);
         }
         reiniciar();
     }
 }
+//
 
+//API SWEET ALERT
 function reiniciar(){
     btnContinue.onclick = () => {
         swal({
