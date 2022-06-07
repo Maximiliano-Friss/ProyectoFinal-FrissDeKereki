@@ -50,7 +50,7 @@ let poder1 = '';
 let poder2 = '';
 let f1 = 1; //f1 y f2 son factores que afectan el ataque enemigo
 let f2 = 1;
-let t0 = 1; //t1 factor afectado por los tipos de ataques y pokemon
+let t0 = 1; //t1 es un factor afectado por los tipos de ataques y pokemon
 let totalDamage1 = 0;
 let totalDamage2 = 0;
 btnContinue.style.cursor = 'pointer';
@@ -95,7 +95,6 @@ vidaPokemon2.innerHTML = `${vidaRestanteEnemigo}/${pokemon2.salud}`;
 nombrePokemon1.classList.add('animate__animated', 'animate__fadeInRight');
 vidaContainerUsuario.classList.add('animate__animated', 'animate__fadeInRight');
 vidaPokemon1.classList.add('animate__animated', 'animate__fadeInRight');
-
 nombrePokemon2.classList.add('animate__animated', 'animate__fadeInLeft');
 vidaContainerEnemigo.classList.add('animate__animated', 'animate__fadeInLeft');
 vidaPokemon2.classList.add('animate__animated', 'animate__fadeInLeft');
@@ -345,7 +344,7 @@ function reiniciar(){
     btnContinue.onclick = () => {
         swal({
             text: "Qué deseas hacer ahora?",
-            icon: "success",
+            icon: '../img/pokeballSmall.png',
             buttons: ["Terminar", "Volver a empezar"],
         })
         .then((volverAEmpezar) => {
